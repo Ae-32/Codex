@@ -1,0 +1,47 @@
+[
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "General Purpose / Scripting",
+    "icon": "code",
+    "color": "0xFF3776AB",
+    "description": "High-level programming language known for readability and rich data science ecosystem.",
+    "sheetCount": 4
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "Web / Scripting",
+    "icon": "javascript",
+    "color": "0xFFF7DF1E",
+    "description": "The language of the web, powering frontend browsers and Node.js backend servers.",
+    "sheetCount": 4
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "category": "Systems Programming",
+    "icon": "memory",
+    "color": "0xFFDEA584",
+    "description": "Systems language empowering everyone to build reliable and efficient software with memory safety.",
+    "sheetCount": 4
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "category": "Database / Queries",
+    "icon": "storage",
+    "color": "0xFF336791",
+    "description": "Domain-specific language used in programming and designed for managing data in RDBMS.",
+    "sheetCount": 4
+  },
+  {
+    "id": "dart",
+    "name": "Dart",
+    "category": "Cross-Platform / Mobile",
+    "icon": "flutter_dash",
+    "color": "0xFF0175C2",
+    "description": "Client-optimized language for fast apps on any platform, powering Flutter.",
+    "sheetCount": 3
+  }
+]
