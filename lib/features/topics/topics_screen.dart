@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/models/language_model.dart';
 import '../../core/models/cheat_sheet_model.dart';
+import '../../core/models/bookmark_model.dart';
 import '../../core/services/content_service.dart';
+import '../../core/services/bookmark_service.dart';
 import '../cheat_sheets/cheat_sheet_detail_screen.dart';
 
 final cheatSheetProvider = FutureProvider.family<CheatSheetModel?, String>((ref, languageId) async {
@@ -122,12 +124,17 @@ class TopicsScreen extends ConsumerWidget {
                       );
                     }
 
+                    final bookmarksList = ref.watch(bookmarksProvider).value ?? [];
+
                     return ListView.separated(
                       itemCount: sheet.topics.length,
                       separatorBuilder: (_, _) => const SizedBox(height: 10),
                       itemBuilder: (context, index) {
                         final topic = sheet.topics[index];
                         final diffColor = _getDifficultyColor(topic.difficulty);
+                        final isSaved = bookmarksList.any(
+                          (b) => b.languageId == language.id && b.topicId == topic.id,
+                        );
 
                         return Card(
                           child: ListTile(
@@ -140,21 +147,45 @@ class TopicsScreen extends ConsumerWidget {
                                 fontSize: 15,
                               ),
                             ),
-                            trailing: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                              decoration: BoxDecoration(
-                                color: diffColor.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: diffColor.withValues(alpha: 0.3)),
-                              ),
-                              child: Text(
-                                topic.difficulty,
-                                style: GoogleFonts.inter(
-                                  color: diffColor,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                  decoration: BoxDecoration(
+                                    color: diffColor.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: diffColor.withValues(alpha: 0.3)),
+                                  ),
+                                  child: Text(
+                                    topic.difficulty,
+                                    style: GoogleFonts.inter(
+                                      color: diffColor,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(width: 4),
+                                IconButton(
+                                  icon: Icon(
+                                    isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                                    color: isSaved ? const Color(0xFF38BDF8) : const Color(0xFF64748B),
+                                    size: 20,
+                                  ),
+                                  onPressed: () {
+                                    final bm = BookmarkModel(
+                                      languageId: language.id,
+                                      languageName: language.name,
+                                      topicId: topic.id,
+                                      topicTitle: topic.title,
+                                      difficulty: topic.difficulty,
+                                      savedAt: DateTime.now(),
+                                    );
+                                    ref.read(bookmarksProvider.notifier).toggleBookmark(bm);
+                                  },
+                                ),
+                              ],
                             ),
                             onTap: () {
                               Navigator.push(

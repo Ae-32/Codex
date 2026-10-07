@@ -8,10 +8,10 @@
 - `[Done]` **Unit 04: Topic Hierarchy & Navigation View**
 - `[Done]` **Unit 05: Cheat Sheet Markdown & Syntax Highlighter Reader**
 - `[Done]` **Unit 06: Bundled Sample Content (Python, JavaScript, Rust, SQL, Dart)**
-- `[Pending]` **Unit 07: Global Search & Filter Engine**
-- `[Pending]` **Unit 08: Bookmarks & Saved Snippets Feature**
-- `[Pending]` **Unit 09: Dark Theme Styling & UI Polish**
-- `[Pending]` **Unit 10: App Build Verification & Launch Readiness**
+- `[Done]` **Unit 07: Global Search & Filter Engine**
+- `[Done]` **Unit 08: Bookmarks & Saved Snippets Feature**
+- `[Done]` **Unit 09: Dark Theme Styling & UI Polish**
+- `[Done]` **Unit 10: App Build Verification & Launch Readiness**
 
 ---
 
@@ -49,3 +49,26 @@
 - [x] Build `CheatSheetDetailScreen` using `flutter_markdown`.
 - [x] Integrate `CodeBlockWidget` with syntax highlighting and copy-to-clipboard functionality.
 - **Exit Criteria**: Markdown cheat sheets render cleanly with dark theme code blocks.
+
+### Unit 06: Bundled Sample Content
+- [x] Add dynamic cheat sheet Markdown assets for Python, JavaScript, Rust, SQL, and Dart.
+- **Exit Criteria**: All 5 bundled languages have complete topic structure & markdown references.
+
+### Unit 07: Global Search & Filter Engine
+- [x] Implement real-time title & category filtering in `LanguagesScreen` via Riverpod `searchQueryProvider`.
+- **Exit Criteria**: Search input dynamically filters available languages and categories.
+
+### Unit 08: Bookmarks & Saved Snippets Feature
+- [x] Implement `BookmarkModel` and `BookmarksNotifier` backed by `SharedPreferences`.
+- [x] Build `BookmarksScreen` with full dynamic render, topic navigation, and remove action.
+- [x] Add interactive bookmark toggle buttons to `TopicsScreen`.
+- [x] Add unit test suite in `test/bookmark_service_test.dart`.
+- **Exit Criteria**: Bookmark state persists across app launches and passes all unit tests.
+
+### Unit 09: Dark Theme Styling & UI Polish
+- [x] Configure sleek dark palette tokens (Slate 900/800, Sky 400 accent, Indigo 400) in `AppTheme`.
+- **Exit Criteria**: Modern dark theme applied consistently across all app components.
+
+### Unit 10: App Build Verification & Launch Readiness
+- [x] Verify project compilation and execution of all 5 unit tests (`flutter test` passes 100%).
+- **Exit Criteria**: All tests pass cleanly; app ready for mobile/desktop run.
